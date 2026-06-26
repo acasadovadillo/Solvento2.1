@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Finanzas Personales</title>
+  <link rel="stylesheet" href="src/css/base.css">
+  <link rel="stylesheet" href="src/css/layout.css">
+  <link rel="stylesheet" href="src/css/components.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar-brand">
+    <h1>💰 Finanzas Personales</h1>
+    <span class="navbar-date">versión 2.0 · Actualizado: 26/06/2026 a las 21:31 horas</span>
+  </div>
+  <ul class="navbar-menu">
+    <li class="navbar-item"><a href="#" data-page="neto" onclick="showPage('neto');return false;">Patrimonio neto</a></li>
+    <li class="navbar-item"><a href="#" data-page="liquidez" onclick="showPage('liquidez');return false;">Liquidez</a></li>
+    <li class="navbar-item"><a href="#" data-page="inversiones" onclick="showPage('inversiones');return false;">Inversiones</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#" onclick="showPage('neto');closeMenu();return false;">Patrimonio neto</a>
+  <a href="#" onclick="showPage('liquidez');closeMenu();return false;">Liquidez</a>
+  <a href="#" onclick="showPage('inversiones');closeMenu();return false;">Inversiones</a>
+</div>
+
+<!-- ══ PÁGINA 1: PATRIMONIO NETO ══ -->
+<div class="page active" id="page-neto">
+  <div class="header-block" style="margin-top:1.5rem;">
+    <h2 class="section-title">Patrimonio neto</h2>
+  </div>
+  <div class="hero-card">
+    <div class="hero-main">
+      <span class="hero-label">Patrimonio neto total</span>
+      <span class="hero-value">45.650,44 €</span>
+      <span class="hero-sub">Actualizado a 26/06/2026 a las 21:31 horas</span>
+    </div>
+    <div class="hero-breakdown">
+      <div class="hero-item">
+        <span class="hero-item-label">Líquido</span>
+        <span class="hero-item-value">9.601,44 €</span>
+      </div>
+      <div class="hero-item">
+        <span class="hero-item-label">Inversiones</span>
+        <span class="hero-item-value">36.049,00 €</span>
+      </div>
+      <div class="hero-item">
+        <span class="hero-item-label">Ratio inv/total</span>
+        <span class="hero-item-value">78,97%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PÁGINA 2: LIQUIDEZ ══ -->
+<div class="page" id="page-liquidez">
+  <div class="header-block">
+    <h2 class="section-title">Patrimonio líquido</h2>
+    <div class="section-subtitle">9.601,44 €</div>
+  </div>
+  <div class="dashboard-main-grid">
+    <div class="dashboard-panel">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div style="font-size:0.82rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;margin-bottom:0.5rem;">Evolución del balance</div>
+          <div style="display:flex;align-items:center;gap:0.8rem;min-height:38px;">
+            <div id="evo-rendimiento-display" style="font-size:1.05rem;font-weight:600;color:#ef4444;background:rgba(239,68,68,0.15);padding:0.3rem 0.7rem;border-radius:6px;display:inline-block;">-2.221,33 € (-18,79%)</div>
+            <div id="evo-valor-display" style="font-size:1.5rem;font-weight:700;color:#fff;letter-spacing:-0.02em;display:none;"></div>
+          </div>
+        </div>
+        <div style="text-align:right;">
+          <div id="evo-date-display" style="font-size:0.82rem;color:#6b7280;font-weight:500;">Desde el inicio (26/02/2026)</div>
+        </div>
+      </div>
+      <div class="timeframe-selector">
+        <button class="tf-btn" data-period="1D">1D</button>
+        <button class="tf-btn" data-period="1M">1M</button>
+        <button class="tf-btn" data-period="3M">3M</button>
+        <button class="tf-btn" data-period="6M">6M</button>
+        <button class="tf-btn" data-period="1Y">1Y</button>
+        <button class="tf-btn active" data-period="MAX">MAX</button>
+      </div>
+      <div style="position:relative;width:100%;flex-grow:1;min-height:220px;">
+        <svg id="patrimonio-svg-chart" viewBox="0 0 1000 300" width="100%" height="100%" preserveAspectRatio="none" style="overflow:visible;cursor:crosshair;">
+          <defs>
+            <linearGradient id="chart-area-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop id="chart-area-grad-stop0" offset="0%" stop-color="#ef4444" stop-opacity="0.25"/>
+              <stop id="chart-area-grad-stop1" offset="100%" stop-color="#ef4444" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+          <g id="chart-axes">
+            <line x1="70" y1="260.0" x2="980" y2="260.0" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="984" y="264.0" text-anchor="start" font-size="10" fill="#6b7280">9,6k</text>
+<line x1="70" y1="205.0" x2="980" y2="205.0" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="984" y="209.0" text-anchor="start" font-size="10" fill="#6b7280">10,3k</text>
+<line x1="70" y1="150.0" x2="980" y2="150.0" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="984" y="154.0" text-anchor="start" font-size="10" fill="#6b7280">11,0k</text>
+<line x1="70" y1="95.0" x2="980" y2="95.0" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="984" y="99.0" text-anchor="start" font-size="10" fill="#6b7280">11,7k</text>
+<line x1="70" y1="40.0" x2="980" y2="40.0" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="984" y="44.0" text-anchor="start" font-size="10" fill="#6b7280">12,4k</text>
+            <text x="70.0" y="295" text-anchor="middle" font-size="9" fill="#6b7280">26/02/26</text>
+<text x="206.5" y="295" text-anchor="middle" font-size="9" fill="#6b7280">16/03/26</text>
+<text x="365.8" y="295" text-anchor="middle" font-size="9" fill="#6b7280">06/04/26</text>
+<text x="525.0" y="295" text-anchor="middle" font-size="9" fill="#6b7280">27/04/26</text>
+<text x="873.8" y="295" text-anchor="middle" font-size="9" fill="#6b7280">12/06/26</text>
+<text x="980.0" y="295" text-anchor="middle" font-size="9" fill="#6b7280">26/06/26</text>
+          </g>
+          <line x1="70" y1="280" x2="980" y2="280" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="4 4"/>
+          <line id="evo-ref-line" x1="70" y1="83.64" x2="980" y2="83.64" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <path id="chart-area" d="M 70.00 83.64 L 77.58 86.19 L 85.17 91.04 L 92.75 88.11 L 100.33 116.43 L 107.92 115.86 L 115.50 86.89 L 123.08 91.32 L 130.67 63.84 L 153.42 47.91 L 161.00 62.65 L 168.58 63.43 L 176.17 75.66 L 183.75 75.90 L 206.50 80.64 L 214.08 82.55 L 221.67 89.22 L 236.83 89.45 L 259.58 82.72 L 267.17 83.52 L 274.75 90.86 L 282.33 92.59 L 289.92 92.67 L 297.50 94.22 L 312.67 105.01 L 327.83 73.87 L 335.42 74.43 L 343.00 73.40 L 365.75 40.00 L 373.33 41.39 L 380.92 46.78 L 388.50 52.35 L 396.08 59.73 L 418.83 57.21 L 426.42 60.87 L 441.58 60.87 L 449.17 66.10 L 471.92 80.37 L 479.50 80.70 L 487.08 81.76 L 494.67 87.28 L 525.00 101.08 L 532.58 101.88 L 540.17 103.13 L 547.75 107.88 L 578.08 128.96 L 805.58 134.95 L 813.17 135.30 L 820.75 136.85 L 828.33 138.14 L 835.92 142.71 L 843.50 126.38 L 851.08 129.75 L 858.67 151.81 L 866.25 152.20 L 873.83 157.77 L 881.42 162.58 L 889.00 152.57 L 896.58 152.65 L 904.17 153.76 L 911.75 159.67 L 919.33 163.01 L 926.92 163.94 L 934.50 166.16 L 942.08 164.27 L 949.67 168.71 L 957.25 251.40 L 964.83 254.48 L 972.42 255.85 L 980.00 260.00 L 980.00 280 L 70.00 280 Z" fill="url(#chart-area-grad)"/>
+          <path id="chart-line" d="M 70.00 83.64 L 77.58 86.19 L 85.17 91.04 L 92.75 88.11 L 100.33 116.43 L 107.92 115.86 L 115.50 86.89 L 123.08 91.32 L 130.67 63.84 L 153.42 47.91 L 161.00 62.65 L 168.58 63.43 L 176.17 75.66 L 183.75 75.90 L 206.50 80.64 L 214.08 82.55 L 221.67 89.22 L 236.83 89.45 L 259.58 82.72 L 267.17 83.52 L 274.75 90.86 L 282.33 92.59 L 289.92 92.67 L 297.50 94.22 L 312.67 105.01 L 327.83 73.87 L 335.42 74.43 L 343.00 73.40 L 365.75 40.00 L 373.33 41.39 L 380.92 46.78 L 388.50 52.35 L 396.08 59.73 L 418.83 57.21 L 426.42 60.87 L 441.58 60.87 L 449.17 66.10 L 471.92 80.37 L 479.50 80.70 L 487.08 81.76 L 494.67 87.28 L 525.00 101.08 L 532.58 101.88 L 540.17 103.13 L 547.75 107.88 L 578.08 128.96 L 805.58 134.95 L 813.17 135.30 L 820.75 136.85 L 828.33 138.14 L 835.92 142.71 L 843.50 126.38 L 851.08 129.75 L 858.67 151.81 L 866.25 152.20 L 873.83 157.77 L 881.42 162.58 L 889.00 152.57 L 896.58 152.65 L 904.17 153.76 L 911.75 159.67 L 919.33 163.01 L 926.92 163.94 L 934.50 166.16 L 942.08 164.27 L 949.67 168.71 L 957.25 251.40 L 964.83 254.48 L 972.42 255.85 L 980.00 260.00" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line id="interactive-v-line" x1="0" y1="20" x2="0" y2="280" stroke="#4b5563" stroke-width="1" stroke-dasharray="3 3" style="display:none;"/>
+        </svg>
+        <div id="interactive-dot" style="position:absolute;width:10px;height:10px;border-radius:50%;background:#ef4444;border:2px solid #1a1d27;transform:translate(-50%,-50%);pointer-events:none;display:none;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:0.75rem;font-size:0.75rem;color:#4b5563;font-weight:500;padding:0 0.5rem;">
+        <span id="lbl-start-date">26/02/2026</span>
+        <span id="lbl-end-date">26/06/2026</span>
+      </div>
+    </div>
+    <div class="dashboard-panel">
+      <div style="font-size:0.82rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;margin-bottom:1.5rem;">Distribución de liquidez</div>
+      <div style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;flex-grow:1;">
+        <div class="chart-wrapper" style="margin:0;">
+          <svg class="donut" viewBox="0 0 42 42">
+            <circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#FF6200" stroke-width="3" stroke-dasharray="96.7382 3.2618" stroke-dashoffset="25" style="transform:rotate(0.00deg);transform-origin:center;"><title>Bankinter: 9.288,26 € (96,74%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ec0000" stroke-width="3" stroke-dasharray="1.5471 98.4529" stroke-dashoffset="25" style="transform:rotate(348.26deg);transform-origin:center;"><title>Santander: 148,54 € (1,55%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ffffff" stroke-width="3" stroke-dasharray="1.1200 98.8800" stroke-dashoffset="25" style="transform:rotate(353.83deg);transform-origin:center;"><title>Trade Republic: 107,54 € (1,12%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#2d9e5f" stroke-width="3" stroke-dasharray="0.5947 99.4053" stroke-dashoffset="25" style="transform:rotate(357.86deg);transform-origin:center;"><title>Efectivo: 57,10 € (0,59%)</title></circle>
+          </svg>
+          <div class="donut-center">
+            <span style="font-size:1.05rem;font-weight:700;color:#fff;line-height:1.2;word-wrap:break-word;max-width:100px;">9.601,44 €</span>
+            <span style="font-size:0.52rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;margin-top:0.2rem;">Total</span>
+          </div>
+          <div id="dynamic-label" class="chart-label"></div>
+        </div>
+        <div class="legend-box">
+<div class="legend-item">
+  <div style="display:flex;align-items:center;justify-content:center;width:30px;"><img src="img/logo-bankinter.png" style="width:20px;height:20px;object-fit:contain;vertical-align:middle;"></div>
+  <div style="flex-grow:1;display:flex;flex-direction:column;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#FF6200;flex-shrink:0;"></span>
+      <span style="color:#ffffff;font-weight:600;font-size:0.95rem;">Bankinter</span>
+    </div>
+    <span style="color:#9ca3af;font-size:0.8rem;font-weight:500;margin-left:1.15rem;">96,74%</span>
+  </div>
+  <div style="text-align:right;color:#ffffff;font-weight:700;font-size:1.05rem;">9.288,26 €</div>
+</div>
+
+<div class="legend-item">
+  <div style="display:flex;align-items:center;justify-content:center;width:30px;"><img src="img/logo-santander.png" style="width:20px;height:20px;object-fit:contain;vertical-align:middle;"></div>
+  <div style="flex-grow:1;display:flex;flex-direction:column;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ec0000;flex-shrink:0;"></span>
+      <span style="color:#ffffff;font-weight:600;font-size:0.95rem;">Santander</span>
+    </div>
+    <span style="color:#9ca3af;font-size:0.8rem;font-weight:500;margin-left:1.15rem;">1,55%</span>
+  </div>
+  <div style="text-align:right;color:#ffffff;font-weight:700;font-size:1.05rem;">148,54 €</div>
+</div>
+
+<div class="legend-item">
+  <div style="display:flex;align-items:center;justify-content:center;width:30px;"><img src="img/logo-trade-republic.png" style="width:20px;height:20px;object-fit:contain;vertical-align:middle;"></div>
+  <div style="flex-grow:1;display:flex;flex-direction:column;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#ffffff;flex-shrink:0;"></span>
+      <span style="color:#ffffff;font-weight:600;font-size:0.95rem;">Trade Republic</span>
+    </div>
+    <span style="color:#9ca3af;font-size:0.8rem;font-weight:500;margin-left:1.15rem;">1,12%</span>
+  </div>
+  <div style="text-align:right;color:#ffffff;font-weight:700;font-size:1.05rem;">107,54 €</div>
+</div>
+
+<div class="legend-item">
+  <div style="display:flex;align-items:center;justify-content:center;width:30px;">💵</div>
+  <div style="flex-grow:1;display:flex;flex-direction:column;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#2d9e5f;flex-shrink:0;"></span>
+      <span style="color:#ffffff;font-weight:600;font-size:0.95rem;">Efectivo</span>
+    </div>
+    <span style="color:#9ca3af;font-size:0.8rem;font-weight:500;margin-left:1.15rem;">0,59%</span>
+  </div>
+  <div style="text-align:right;color:#ffffff;font-weight:700;font-size:1.05rem;">57,10 €</div>
+</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="table-container" style="margin-top:2rem;margin-bottom:2rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem;">
+      <div style="font-size:0.82rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;">Ingresos vs Gastos por mes</div>
+      <div style="display:flex;gap:1rem;font-size:0.8rem;">
+        <div style="display:flex;align-items:center;gap:0.4rem;"><span style="width:10px;height:10px;background:#10b981;border-radius:2px;display:inline-block;"></span><span style="color:#9ca3af;">Ingresos</span></div>
+        <div style="display:flex;align-items:center;gap:0.4rem;"><span style="width:10px;height:10px;background:#ef4444;border-radius:2px;display:inline-block;"></span><span style="color:#9ca3af;">Gastos</span></div>
+      </div>
+    </div>
+    <svg viewBox="0 0 700 220" width="100%" style="overflow:visible;"><line x1="60" y1="20.0" x2="680" y2="20.0" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="54" y="24.0" text-anchor="end" font-size="9" fill="#6b7280">1920</text><line x1="60" y1="57.5" x2="680" y2="57.5" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="54" y="61.5" text-anchor="end" font-size="9" fill="#6b7280">1440</text><line x1="60" y1="95.0" x2="680" y2="95.0" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="54" y="99.0" text-anchor="end" font-size="9" fill="#6b7280">960</text><line x1="60" y1="132.5" x2="680" y2="132.5" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="54" y="136.5" text-anchor="end" font-size="9" fill="#6b7280">480</text><line x1="60" y1="170.0" x2="680" y2="170.0" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="3 3"/><text x="54" y="174.0" text-anchor="end" font-size="9" fill="#6b7280">0</text><rect x="89.0" y="170.0" width="28.0" height="0.0" fill="#10b981" rx="3" opacity="0.9"><title>Ingresos Feb 2026: 0,00 €</title></rect><rect x="127.0" y="116.3" width="28.0" height="53.7" fill="#ef4444" rx="3" opacity="0.9"><title>Gastos Feb 2026: 687,83 €</title></rect><text x="122.0" y="186" text-anchor="middle" font-size="9" fill="#6b7280">Feb 2026</text><rect x="213.0" y="37.1" width="28.0" height="132.9" fill="#10b981" rx="3" opacity="0.9"><title>Ingresos Mar 2026: 1.700,44 €</title></rect><rect x="251.0" y="20.0" width="28.0" height="150.0" fill="#ef4444" rx="3" opacity="0.9"><title>Gastos Mar 2026: 1.919,60 €</title></rect><text x="246.0" y="186" text-anchor="middle" font-size="9" fill="#6b7280">Mar 2026</text><rect x="337.0" y="85.6" width="28.0" height="84.4" fill="#10b981" rx="3" opacity="0.9"><title>Ingresos Abr 2026: 1.080,00 €</title></rect><rect x="375.0" y="56.5" width="28.0" height="113.5" fill="#ef4444" rx="3" opacity="0.9"><title>Gastos Abr 2026: 1.452,64 €</title></rect><text x="370.0" y="186" text-anchor="middle" font-size="9" fill="#6b7280">Abr 2026</text><rect x="461.0" y="157.9" width="28.0" height="12.1" fill="#10b981" rx="3" opacity="0.9"><title>Ingresos May 2026: 155,00 €</title></rect><rect x="499.0" y="137.1" width="28.0" height="32.9" fill="#ef4444" rx="3" opacity="0.9"><title>Gastos May 2026: 420,49 €</title></rect><text x="494.0" y="186" text-anchor="middle" font-size="9" fill="#6b7280">May 2026</text><rect x="585.0" y="123.0" width="28.0" height="47.0" fill="#10b981" rx="3" opacity="0.9"><title>Ingresos Jun 2026: 601,00 €</title></rect><rect x="623.0" y="70.1" width="28.0" height="99.9" fill="#ef4444" rx="3" opacity="0.9"><title>Gastos Jun 2026: 1.277,87 €</title></rect><text x="618.0" y="186" text-anchor="middle" font-size="9" fill="#6b7280">Jun 2026</text></svg>
+    <table class="minimal-table" style="margin-top:1.5rem;">
+      <thead><tr>
+        <th style="text-align:left;">Mes</th>
+        <th style="text-align:right;">Ingresos</th>
+        <th style="text-align:right;">Gastos</th>
+        <th style="text-align:right;">Balance</th>
+      </tr></thead>
+      <tbody>
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;color:#ffffff;font-weight:600;">Feb 2026</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#10b981;font-weight:600;">0,00 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:600;">687,83 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:700;">-687,83 €</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;color:#ffffff;font-weight:600;">Mar 2026</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#10b981;font-weight:600;">1.700,44 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:600;">1.919,60 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:700;">-219,16 €</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;color:#ffffff;font-weight:600;">Abr 2026</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#10b981;font-weight:600;">1.080,00 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:600;">1.452,64 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:700;">-372,64 €</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;color:#ffffff;font-weight:600;">May 2026</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#10b981;font-weight:600;">155,00 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:600;">420,49 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:700;">-265,49 €</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;color:#ffffff;font-weight:600;">Jun 2026</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#10b981;font-weight:600;">601,00 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:600;">1.277,87 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ef4444;font-weight:700;">-676,87 €</td>
+    </tr></tbody>
+    </table>
+  </div>
+  <div class="table-container">
+    <div style="font-size:0.82rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;margin-bottom:1.5rem;">Desglose por categoría</div>
+    <div class="gastos-layout">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;">
+        <div class="chart-wrapper">
+          <svg class="donut" viewBox="0 0 42 42">
+            <circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#f59e0b" stroke-width="3" stroke-dasharray="23.8086 76.1914" stroke-dashoffset="25" style="transform:rotate(0.00deg);transform-origin:center;"><title>Inmuebles: 1.371,00 € (23,81%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#3b82f6" stroke-width="3" stroke-dasharray="15.7958 84.2042" stroke-dashoffset="25" style="transform:rotate(85.71deg);transform-origin:center;"><title>Transporte: 909,59 € (15,80%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#f97316" stroke-width="3" stroke-dasharray="13.0994 86.9006" stroke-dashoffset="25" style="transform:rotate(142.58deg);transform-origin:center;"><title>Impuestos: 754,32 € (13,10%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#10b981" stroke-width="3" stroke-dasharray="12.4600 87.5400" stroke-dashoffset="25" style="transform:rotate(189.73deg);transform-origin:center;"><title>Alimentación: 717,50 € (12,46%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="12.0071 87.9929" stroke-dashoffset="25" style="transform:rotate(234.59deg);transform-origin:center;"><title>Ocio: 691,42 € (12,01%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#6b7280" stroke-width="3" stroke-dasharray="9.5026 90.4974" stroke-dashoffset="25" style="transform:rotate(277.82deg);transform-origin:center;"><title>Fumar: 547,20 € (9,50%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ef4444" stroke-width="3" stroke-dasharray="7.7525 92.2475" stroke-dashoffset="25" style="transform:rotate(312.02deg);transform-origin:center;"><title>Salud: 446,42 € (7,75%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ec4899" stroke-width="3" stroke-dasharray="1.9811 98.0189" stroke-dashoffset="25" style="transform:rotate(339.93deg);transform-origin:center;"><title>Regalos: 114,08 € (1,98%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#fb7185" stroke-width="3" stroke-dasharray="1.1105 98.8895" stroke-dashoffset="25" style="transform:rotate(347.07deg);transform-origin:center;"><title>Ropa: 63,95 € (1,11%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#6ee7b7" stroke-width="3" stroke-dasharray="0.8544 99.1456" stroke-dashoffset="25" style="transform:rotate(351.06deg);transform-origin:center;"><title>ABIES: 49,20 € (0,85%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#14b8a6" stroke-width="3" stroke-dasharray="0.5823 99.4177" stroke-dashoffset="25" style="transform:rotate(354.14deg);transform-origin:center;"><title>Suscripciones: 33,53 € (0,58%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#a78bfa" stroke-width="3" stroke-dasharray="0.4288 99.5712" stroke-dashoffset="25" style="transform:rotate(356.24deg);transform-origin:center;"><title>Educación: 24,69 € (0,43%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#9ca3af" stroke-width="3" stroke-dasharray="0.3913 99.6087" stroke-dashoffset="25" style="transform:rotate(357.78deg);transform-origin:center;"><title>Comisiones bancarias: 22,53 € (0,39%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#fbbf24" stroke-width="3" stroke-dasharray="0.2258 99.7742" stroke-dashoffset="25" style="transform:rotate(359.19deg);transform-origin:center;"><title>Peluquería: 13,00 € (0,23%)</title></circle>
+          </svg>
+          <div class="donut-center">
+            <span style="font-size:0.9rem;font-weight:700;color:#fff;line-height:1.2;word-wrap:break-word;max-width:100px;">5.758,43 €</span>
+            <span style="font-size:0.52rem;color:#6b7280;text-transform:uppercase;margin-top:0.2rem;">Total</span>
+          </div>
+          <div id="gastos-label" class="chart-label"></div>
+        </div>
+      </div>
+      <table class="minimal-table" style="margin-top:0;">
+        <thead><tr>
+          <th style="text-align:left;">Categoría</th>
+          <th style="text-align:right;">Importe</th>
+          <th style="text-align:right;">%</th>
+        </tr></thead>
+        <tbody>
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#f59e0b;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Inmuebles</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">1.371,00 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">23,81%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#3b82f6;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Transporte</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">909,59 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">15,80%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#f97316;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Impuestos</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">754,32 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">13,10%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#10b981;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Alimentación</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">717,50 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">12,46%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#8b5cf6;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Ocio</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">691,42 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">12,01%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#6b7280;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Fumar</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">547,20 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">9,50%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#ef4444;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Salud</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">446,42 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">7,75%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#ec4899;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Regalos</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">114,08 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">1,98%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#fb7185;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Ropa</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">63,95 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">1,11%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#6ee7b7;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">ABIES</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">49,20 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">0,85%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#14b8a6;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Suscripciones</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">33,53 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">0,58%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#a78bfa;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Educación</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">24,69 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">0,43%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#9ca3af;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Comisiones bancarias</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">22,53 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">0,39%</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="display:flex;align-items:center;gap:0.6rem;">
+          <span style="width:10px;height:10px;border-radius:50%;background:#fbbf24;flex-shrink:0;"></span>
+          <span style="color:#ffffff;font-weight:500;font-size:0.9rem;">Peluquería</span>
+        </div>
+      </td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">13,00 €</td>
+      <td style="padding:0.75rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#9ca3af;font-size:0.85rem;">0,23%</td>
+    </tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PÁGINA 3: INVERSIONES ══ -->
+<div class="page" id="page-inversiones">
+  <div class="header-block">
+    <h2 class="section-title">Inversiones</h2>
+    <div class="section-subtitle">36.049,00 €</div>
+  </div>
+  <div class="chart-container-double">
+    <div class="chart-block">
+      <div class="chart-block-title">Estrategia de inversión</div>
+      <div class="chart-wrapper">
+        <svg class="donut" viewBox="0 0 42 42"><circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#3b82f6" stroke-width="3" stroke-dasharray="53.5180 46.4820" stroke-dashoffset="25" style="transform:rotate(0.00deg);transform-origin:center;"><title>Renta variable: 19.292,72 € (53,52%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#10b981" stroke-width="3" stroke-dasharray="46.4820 53.5180" stroke-dashoffset="25" style="transform:rotate(192.66deg);transform-origin:center;"><title>Renta fija: 16.756,28 € (46,48%)</title></circle></svg>
+        <div class="donut-center">
+          <span style="font-size:1rem;font-weight:700;color:#fff;">36.049,00 €</span>
+          <span style="font-size:0.55rem;color:#6b7280;text-transform:uppercase;margin-top:0.2rem;">Total</span>
+        </div>
+      </div>
+      <div style="width:100%;display:flex;flex-direction:column;align-items:center;margin-top:0.5rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;font-size:0.85rem;width:100%;max-width:260px;margin:0.2rem 0;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="width:9px;height:9px;background:#3b82f6;border-radius:50%;flex-shrink:0;"></span>
+        <span style="color:#9ca3af;font-weight:500;">Renta variable</span>
+      </div>
+      <span style="color:#ffffff;font-weight:600;">53,52%</span>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;font-size:0.85rem;width:100%;max-width:260px;margin:0.2rem 0;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="width:9px;height:9px;background:#10b981;border-radius:50%;flex-shrink:0;"></span>
+        <span style="color:#9ca3af;font-weight:500;">Renta fija</span>
+      </div>
+      <span style="color:#ffffff;font-weight:600;">46,48%</span>
+    </div></div>
+    </div>
+    <div class="chart-block">
+      <div class="chart-block-title">Distribución por activos</div>
+      <div class="chart-wrapper">
+        <svg class="donut" viewBox="0 0 42 42"><circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#14b8a6" stroke-width="3" stroke-dasharray="97.0594 2.9406" stroke-dashoffset="25" style="transform:rotate(0.00deg);transform-origin:center;"><title>Fondo de inversión: 34.988,93 € (97,06%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#8b5cf6" stroke-width="3" stroke-dasharray="2.8500 97.1500" stroke-dashoffset="25" style="transform:rotate(349.41deg);transform-origin:center;"><title>ETF: 1.027,41 € (2,85%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#f59e0b" stroke-width="3" stroke-dasharray="0.0596 99.9404" stroke-dashoffset="25" style="transform:rotate(359.67deg);transform-origin:center;"><title>Criptoactivo: 21,48 € (0,06%)</title></circle>
+<circle class="sector" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#ec4899" stroke-width="3" stroke-dasharray="0.0310 99.9690" stroke-dashoffset="25" style="transform:rotate(359.89deg);transform-origin:center;"><title>Acciones: 11,18 € (0,03%)</title></circle></svg>
+        <div class="donut-center">
+          <span style="font-size:1rem;font-weight:700;color:#fff;">36.049,00 €</span>
+          <span style="font-size:0.55rem;color:#6b7280;text-transform:uppercase;margin-top:0.2rem;">Activos</span>
+        </div>
+      </div>
+      <div style="width:100%;display:flex;flex-direction:column;align-items:center;margin-top:0.5rem;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;font-size:0.85rem;width:100%;max-width:260px;margin:0.2rem 0;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="width:9px;height:9px;background:#14b8a6;border-radius:50%;flex-shrink:0;"></span>
+        <span style="color:#9ca3af;font-weight:500;">Fondo de inversión</span>
+      </div>
+      <span style="color:#ffffff;font-weight:600;">97,06%</span>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;font-size:0.85rem;width:100%;max-width:260px;margin:0.2rem 0;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="width:9px;height:9px;background:#8b5cf6;border-radius:50%;flex-shrink:0;"></span>
+        <span style="color:#9ca3af;font-weight:500;">ETF</span>
+      </div>
+      <span style="color:#ffffff;font-weight:600;">2,85%</span>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;font-size:0.85rem;width:100%;max-width:260px;margin:0.2rem 0;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="width:9px;height:9px;background:#f59e0b;border-radius:50%;flex-shrink:0;"></span>
+        <span style="color:#9ca3af;font-weight:500;">Criptoactivo</span>
+      </div>
+      <span style="color:#ffffff;font-weight:600;">0,06%</span>
+    </div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:1.5rem;font-size:0.85rem;width:100%;max-width:260px;margin:0.2rem 0;">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <span style="width:9px;height:9px;background:#ec4899;border-radius:50%;flex-shrink:0;"></span>
+        <span style="color:#9ca3af;font-weight:500;">Acciones</span>
+      </div>
+      <span style="color:#ffffff;font-weight:600;">0,03%</span>
+    </div></div>
+    </div>
+  </div>
+  <div class="table-container">
+    <div style="font-size:0.82rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;margin-bottom:0.5rem;">Desglose detallado de activos</div>
+    <table class="minimal-table">
+      <thead><tr>
+        <th style="text-align:left;">Activo</th>
+        <th style="text-align:left;">ISIN</th>
+        <th style="text-align:right;">Valor actual</th>
+        <th style="text-align:right;">Peso</th>
+        <th style="text-align:right;">Mercado</th>
+      </tr></thead>
+      <tbody>
+    <tr class="table-row">
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="font-weight:600;color:#ffffff;font-size:0.9rem;">Bankinter Premium Moderado R</div>
+        <div style="font-size:0.75rem;color:#6b7280;margin-top:0.15rem;">Fondo de inversión</div>
+      </td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;color:#9ca3af;font-size:0.85rem;font-family:ui-monospace,monospace;">ES0164586036</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">18.590,26 €</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#3b82f6;font-weight:600;font-size:0.9rem;">51,57%</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#4b5563;font-size:0.85rem;">N/D</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="font-weight:600;color:#ffffff;font-size:0.9rem;">Bankinter Horizonte 2028 Cl R</div>
+        <div style="font-size:0.75rem;color:#6b7280;margin-top:0.15rem;">Fondo de inversión</div>
+      </td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;color:#9ca3af;font-size:0.85rem;font-family:ui-monospace,monospace;">ES0159038001</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">16.398,67 €</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#3b82f6;font-weight:600;font-size:0.9rem;">45,49%</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#4b5563;font-size:0.85rem;">N/D</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="font-weight:600;color:#ffffff;font-size:0.9rem;">US Aggregate Bond USD (Acc)</div>
+        <div style="font-size:0.75rem;color:#6b7280;margin-top:0.15rem;">ETF</div>
+      </td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;color:#9ca3af;font-size:0.85rem;font-family:ui-monospace,monospace;">IE00BYXYYM63</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">357,61 €</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#3b82f6;font-weight:600;font-size:0.9rem;">0,99%</td>
+      <td id="mkt-AGGG_L" style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#f59e0b;font-weight:600;font-size:0.9rem;font-family:ui-monospace,monospace;" data-ticker="AGGG.L">—</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="font-weight:600;color:#ffffff;font-size:0.9rem;">Core MSCI World USD (Acc)</div>
+        <div style="font-size:0.75rem;color:#6b7280;margin-top:0.15rem;">ETF</div>
+      </td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;color:#9ca3af;font-size:0.85rem;font-family:ui-monospace,monospace;">IE00B4L5Y983</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">232,28 €</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#3b82f6;font-weight:600;font-size:0.9rem;">0,64%</td>
+      <td id="mkt-IWDA_AS" style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#f59e0b;font-weight:600;font-size:0.9rem;font-family:ui-monospace,monospace;" data-ticker="IWDA.AS">—</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="font-weight:600;color:#ffffff;font-size:0.9rem;">Core S&amp;P 500 USD (Acc)</div>
+        <div style="font-size:0.75rem;color:#6b7280;margin-top:0.15rem;">ETF</div>
+      </td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;color:#9ca3af;font-size:0.85rem;font-family:ui-monospace,monospace;">IE00B5BMR087</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">213,05 €</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#3b82f6;font-weight:600;font-size:0.9rem;">0,59%</td>
+      <td id="mkt-CSPX_L" style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#f59e0b;font-weight:600;font-size:0.9rem;font-family:ui-monospace,monospace;" data-ticker="CSPX.L">—</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="font-weight:600;color:#ffffff;font-size:0.9rem;">MSCI Emerging Markets USD (Acc)</div>
+        <div style="font-size:0.75rem;color:#6b7280;margin-top:0.15rem;">ETF</div>
+      </td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;color:#9ca3af;font-size:0.85rem;font-family:ui-monospace,monospace;">IE000KCS7J59</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">115,32 €</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#3b82f6;font-weight:600;font-size:0.9rem;">0,32%</td>
+      <td id="mkt-IEMA_AS" style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#f59e0b;font-weight:600;font-size:0.9rem;font-family:ui-monospace,monospace;" data-ticker="IEMA.AS">—</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="font-weight:600;color:#ffffff;font-size:0.9rem;">Physical Gold USD (Acc)</div>
+        <div style="font-size:0.75rem;color:#6b7280;margin-top:0.15rem;">ETF</div>
+      </td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;color:#9ca3af;font-size:0.85rem;font-family:ui-monospace,monospace;">IE00B4ND3602</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">109,15 €</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#3b82f6;font-weight:600;font-size:0.9rem;">0,30%</td>
+      <td id="mkt-SGLN_L" style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#f59e0b;font-weight:600;font-size:0.9rem;font-family:ui-monospace,monospace;" data-ticker="SGLN.L">—</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="font-weight:600;color:#ffffff;font-size:0.9rem;">Bitcoin</div>
+        <div style="font-size:0.75rem;color:#6b7280;margin-top:0.15rem;">Criptoactivo</div>
+      </td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;color:#9ca3af;font-size:0.85rem;font-family:ui-monospace,monospace;">-</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">21,48 €</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#3b82f6;font-weight:600;font-size:0.9rem;">0,06%</td>
+      <td id="mkt-BTC" style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#f59e0b;font-weight:600;font-size:0.9rem;font-family:ui-monospace,monospace;" data-ticker="BTC">—</td>
+    </tr>
+
+    <tr class="table-row">
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;">
+        <div style="font-weight:600;color:#ffffff;font-size:0.9rem;">Apple</div>
+        <div style="font-size:0.75rem;color:#6b7280;margin-top:0.15rem;">Acciones</div>
+      </td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:left;color:#9ca3af;font-size:0.85rem;font-family:ui-monospace,monospace;">US0378331005</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#ffffff;font-weight:600;font-size:0.9rem;">11,18 €</td>
+      <td style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#3b82f6;font-weight:600;font-size:0.9rem;">0,03%</td>
+      <td id="mkt-AAPL" style="padding:0.85rem 1rem;border-bottom:1px solid #2a2d3a;text-align:right;color:#f59e0b;font-weight:600;font-size:0.9rem;font-family:ui-monospace,monospace;" data-ticker="AAPL">—</td>
+    </tr></tbody>
+    </table>
+  </div>
+  <div style="max-width:1400px;margin:1.5rem auto 0;width:100%;">
+    <div class="dashboard-panel" style="min-height:380px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div style="font-size:0.82rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;margin-bottom:0.5rem;">Evolución Histórica Bitcoin (EUR)</div>
+          <div style="display:flex;align-items:center;gap:0.8rem;min-height:38px;">
+            <div id="btc-rendimiento-display" style="font-size:1.05rem;font-weight:600;color:#10b981;background:rgba(16,185,129,0.15);padding:0.3rem 0.7rem;border-radius:6px;">--</div>
+            <div id="btc-valor-display" style="font-size:1.5rem;font-weight:700;color:#fff;display:none;"></div>
+          </div>
+        </div>
+        <div id="btc-date-display" style="font-size:0.82rem;color:#6b7280;font-weight:500;text-align:right;">Cargando...</div>
+      </div>
+      <div class="timeframe-selector">
+        <button class="tf-btn-btc" data-days="1">1D</button>
+        <button class="tf-btn-btc" data-days="7">7D</button>
+        <button class="tf-btn-btc active" data-days="30">30D</button>
+        <button class="tf-btn-btc" data-days="90">90D</button>
+        <button class="tf-btn-btc" data-days="180">180D</button>
+        <button class="tf-btn-btc" data-days="max">MAX</button>
+      </div>
+      <div style="position:relative;width:100%;flex-grow:1;min-height:220px;">
+        <svg id="btc-svg-chart" viewBox="0 0 1000 300" width="100%" height="100%" preserveAspectRatio="none" style="overflow:visible;cursor:crosshair;">
+          <defs>
+            <linearGradient id="btc-area-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop id="btc-grad-stop0" offset="0%" stop-color="#f59e0b" stop-opacity="0.25"/>
+              <stop id="btc-grad-stop1" offset="100%" stop-color="#f59e0b" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+          <g id="btc-axes"></g>
+          <line x1="70" y1="280" x2="980" y2="280" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="4 4"/>
+          <line id="btc-ref-line" x1="70" y1="260" x2="980" y2="260" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="6 4" style="display:none;"/>
+          <path id="btc-chart-area" d="" fill="url(#btc-area-grad)"/>
+          <path id="btc-chart-line" d="" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line id="btc-v-line" x1="0" y1="20" x2="0" y2="280" stroke="#6b7280" stroke-width="1" stroke-dasharray="3 3" style="display:none;"/>
+        </svg>
+        <div id="btc-dot" style="position:absolute;width:10px;height:10px;border-radius:50%;background:#f59e0b;border:2px solid #1a1d27;transform:translate(-50%,-50%);pointer-events:none;display:none;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:0.75rem;font-size:0.75rem;color:#4b5563;font-weight:500;">
+        <span id="btc-lbl-start">--</span><span id="btc-lbl-end">--</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ GRÁFICA MSCI WORLD ══ -->
+  <div style="max-width:1400px;margin:2rem auto 0;width:100%;">
+    <div class="dashboard-panel" style="min-height:380px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div style="font-size:0.82rem;color:#6b7280;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;margin-bottom:0.5rem;">Core MSCI World USD (Acc) · IE00B4L5Y983</div>
+          <div style="display:flex;align-items:center;gap:0.8rem;min-height:38px;">
+            <div id="msci-rendimiento-display" style="font-size:1.05rem;font-weight:600;color:#3b82f6;background:rgba(59,130,246,0.15);padding:0.3rem 0.7rem;border-radius:6px;">--</div>
+            <div id="msci-valor-display" style="font-size:1.5rem;font-weight:700;color:#fff;display:none;"></div>
+          </div>
+        </div>
+        <div id="msci-date-display" style="font-size:0.82rem;color:#6b7280;font-weight:500;text-align:right;">Cargando...</div>
+      </div>
+      <div class="timeframe-selector">
+        <button class="tf-btn-msci" data-range="1d" data-interval="5m">1D</button>
+        <button class="tf-btn-msci" data-range="5d" data-interval="1d">7D</button>
+        <button class="tf-btn-msci active" data-range="1mo" data-interval="1d">1M</button>
+        <button class="tf-btn-msci" data-range="3mo" data-interval="1d">3M</button>
+        <button class="tf-btn-msci" data-range="6mo" data-interval="1d">6M</button>
+        <button class="tf-btn-msci" data-range="1y" data-interval="1d">1Y</button>
+        <button class="tf-btn-msci" data-range="5y" data-interval="1wk">MAX</button>
+      </div>
+      <div style="position:relative;width:100%;flex-grow:1;min-height:220px;">
+        <svg id="msci-svg-chart" viewBox="0 0 1000 300" width="100%" height="100%" preserveAspectRatio="none" style="overflow:visible;cursor:crosshair;">
+          <defs>
+            <linearGradient id="msci-area-grad" x1="0" y1="0" x2="0" y2="1">
+              <stop id="msci-grad-stop0" offset="0%" stop-color="#3b82f6" stop-opacity="0.25"/>
+              <stop id="msci-grad-stop1" offset="100%" stop-color="#3b82f6" stop-opacity="0.0"/>
+            </linearGradient>
+          </defs>
+          <g id="msci-axes"></g>
+          <line x1="70" y1="280" x2="980" y2="280" stroke="#2a2d3a" stroke-width="1" stroke-dasharray="4 4"/>
+          <line id="msci-ref-line" x1="70" y1="260" x2="980" y2="260" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="6 4" style="display:none;"/>
+          <path id="msci-chart-area" d="" fill="url(#msci-area-grad)"/>
+          <path id="msci-chart-line" d="" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line id="msci-v-line" x1="0" y1="20" x2="0" y2="280" stroke="#6b7280" stroke-width="1" stroke-dasharray="3 3" style="display:none;"/>
+        </svg>
+        <div id="msci-dot" style="position:absolute;width:10px;height:10px;border-radius:50%;background:#3b82f6;border:2px solid #1a1d27;transform:translate(-50%,-50%);pointer-events:none;display:none;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:0.75rem;font-size:0.75rem;color:#4b5563;font-weight:500;">
+        <span id="msci-lbl-start">--</span><span id="msci-lbl-end">--</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <footer>Datos extraídos de Google Sheets &amp; APIs · Actualización automática</footer>
+  <script>const evoData = [
+    { t: 1772060400000, v: 11822.77, f: '26/02/2026', vf: '11.822,77', x: 70.00, y: 83.64 },
+    { t: 1772146800000, v: 11790.68, f: '27/02/2026', vf: '11.790,68', x: 77.58, y: 86.19 },
+    { t: 1772233200000, v: 11729.63, f: '28/02/2026', vf: '11.729,63', x: 85.17, y: 91.04 },
+    { t: 1772319600000, v: 11766.53, f: '01/03/2026', vf: '11.766,53', x: 92.75, y: 88.11 },
+    { t: 1772406000000, v: 11409.82, f: '02/03/2026', vf: '11.409,82', x: 100.33, y: 116.43 },
+    { t: 1772492400000, v: 11416.90, f: '03/03/2026', vf: '11.416,90', x: 107.92, y: 115.86 },
+    { t: 1772578800000, v: 11781.90, f: '04/03/2026', vf: '11.781,90', x: 115.50, y: 86.89 },
+    { t: 1772665200000, v: 11726.03, f: '05/03/2026', vf: '11.726,03', x: 123.08, y: 91.32 },
+    { t: 1772751600000, v: 12072.13, f: '06/03/2026', vf: '12.072,13', x: 130.67, y: 63.84 },
+    { t: 1773010800000, v: 12272.87, f: '09/03/2026', vf: '12.272,87', x: 153.42, y: 47.91 },
+    { t: 1773097200000, v: 12087.21, f: '10/03/2026', vf: '12.087,21', x: 161.00, y: 62.65 },
+    { t: 1773183600000, v: 12077.36, f: '11/03/2026', vf: '12.077,36', x: 168.58, y: 63.43 },
+    { t: 1773270000000, v: 11923.26, f: '12/03/2026', vf: '11.923,26', x: 176.17, y: 75.66 },
+    { t: 1773356400000, v: 11920.22, f: '13/03/2026', vf: '11.920,22', x: 183.75, y: 75.90 },
+    { t: 1773615600000, v: 11860.55, f: '16/03/2026', vf: '11.860,55', x: 206.50, y: 80.64 },
+    { t: 1773702000000, v: 11836.57, f: '17/03/2026', vf: '11.836,57', x: 214.08, y: 82.55 },
+    { t: 1773788400000, v: 11752.54, f: '18/03/2026', vf: '11.752,54', x: 221.67, y: 89.22 },
+    { t: 1773961200000, v: 11749.54, f: '20/03/2026', vf: '11.749,54', x: 236.83, y: 89.45 },
+    { t: 1774220400000, v: 11834.39, f: '23/03/2026', vf: '11.834,39', x: 259.58, y: 82.72 },
+    { t: 1774306800000, v: 11824.24, f: '24/03/2026', vf: '11.824,24', x: 267.17, y: 83.52 },
+    { t: 1774393200000, v: 11731.84, f: '25/03/2026', vf: '11.731,84', x: 274.75, y: 90.86 },
+    { t: 1774479600000, v: 11710.04, f: '26/03/2026', vf: '11.710,04', x: 282.33, y: 92.59 },
+    { t: 1774566000000, v: 11709.05, f: '27/03/2026', vf: '11.709,05', x: 289.92, y: 92.67 },
+    { t: 1774652400000, v: 11689.55, f: '28/03/2026', vf: '11.689,55', x: 297.50, y: 94.22 },
+    { t: 1774821600000, v: 11553.57, f: '30/03/2026', vf: '11.553,57', x: 312.67, y: 105.01 },
+    { t: 1774994400000, v: 11945.83, f: '01/04/2026', vf: '11.945,83', x: 327.83, y: 73.87 },
+    { t: 1775080800000, v: 11938.73, f: '02/04/2026', vf: '11.938,73', x: 335.42, y: 74.43 },
+    { t: 1775167200000, v: 11951.73, f: '03/04/2026', vf: '11.951,73', x: 343.00, y: 73.40 },
+    { t: 1775426400000, v: 12372.45, f: '06/04/2026', vf: '12.372,45', x: 365.75, y: 40.00 },
+    { t: 1775512800000, v: 12354.92, f: '07/04/2026', vf: '12.354,92', x: 373.33, y: 41.39 },
+    { t: 1775599200000, v: 12287.08, f: '08/04/2026', vf: '12.287,08', x: 380.92, y: 46.78 },
+    { t: 1775685600000, v: 12216.87, f: '09/04/2026', vf: '12.216,87', x: 388.50, y: 52.35 },
+    { t: 1775772000000, v: 12123.88, f: '10/04/2026', vf: '12.123,88', x: 396.08, y: 59.73 },
+    { t: 1776031200000, v: 12155.63, f: '13/04/2026', vf: '12.155,63', x: 418.83, y: 57.21 },
+    { t: 1776117600000, v: 12109.63, f: '14/04/2026', vf: '12.109,63', x: 426.42, y: 60.87 },
+    { t: 1776290400000, v: 12109.63, f: '16/04/2026', vf: '12.109,63', x: 441.58, y: 60.87 },
+    { t: 1776376800000, v: 12043.68, f: '17/04/2026', vf: '12.043,68', x: 449.17, y: 66.10 },
+    { t: 1776636000000, v: 11863.91, f: '20/04/2026', vf: '11.863,91', x: 471.92, y: 80.37 },
+    { t: 1776722400000, v: 11859.81, f: '21/04/2026', vf: '11.859,81', x: 479.50, y: 80.70 },
+    { t: 1776808800000, v: 11846.51, f: '22/04/2026', vf: '11.846,51', x: 487.08, y: 81.76 },
+    { t: 1776895200000, v: 11776.96, f: '23/04/2026', vf: '11.776,96', x: 494.67, y: 87.28 },
+    { t: 1777240800000, v: 11603.07, f: '27/04/2026', vf: '11.603,07', x: 525.00, y: 101.08 },
+    { t: 1777327200000, v: 11593.07, f: '28/04/2026', vf: '11.593,07', x: 532.58, y: 101.88 },
+    { t: 1777413600000, v: 11577.32, f: '29/04/2026', vf: '11.577,32', x: 540.17, y: 103.13 },
+    { t: 1777500000000, v: 11517.50, f: '30/04/2026', vf: '11.517,50', x: 547.75, y: 107.88 },
+    { t: 1777845600000, v: 11252.01, f: '04/05/2026', vf: '11.252,01', x: 578.08, y: 128.96 },
+    { t: 1780437600000, v: 11176.56, f: '03/06/2026', vf: '11.176,56', x: 805.58, y: 134.95 },
+    { t: 1780524000000, v: 11172.06, f: '04/06/2026', vf: '11.172,06', x: 813.17, y: 135.30 },
+    { t: 1780610400000, v: 11152.63, f: '05/06/2026', vf: '11.152,63', x: 820.75, y: 136.85 },
+    { t: 1780696800000, v: 11136.33, f: '06/06/2026', vf: '11.136,33', x: 828.33, y: 138.14 },
+    { t: 1780783200000, v: 11078.76, f: '07/06/2026', vf: '11.078,76', x: 835.92, y: 142.71 },
+    { t: 1780869600000, v: 11284.41, f: '08/06/2026', vf: '11.284,41', x: 843.50, y: 126.38 },
+    { t: 1780956000000, v: 11242.01, f: '09/06/2026', vf: '11.242,01', x: 851.08, y: 129.75 },
+    { t: 1781042400000, v: 10964.19, f: '10/06/2026', vf: '10.964,19', x: 858.67, y: 151.81 },
+    { t: 1781128800000, v: 10959.29, f: '11/06/2026', vf: '10.959,29', x: 866.25, y: 152.20 },
+    { t: 1781215200000, v: 10889.08, f: '12/06/2026', vf: '10.889,08', x: 873.83, y: 157.77 },
+    { t: 1781301600000, v: 10828.54, f: '13/06/2026', vf: '10.828,54', x: 881.42, y: 162.58 },
+    { t: 1781388000000, v: 10954.54, f: '14/06/2026', vf: '10.954,54', x: 889.00, y: 152.57 },
+    { t: 1781474400000, v: 10953.54, f: '15/06/2026', vf: '10.953,54', x: 896.58, y: 152.65 },
+    { t: 1781560800000, v: 10939.62, f: '16/06/2026', vf: '10.939,62', x: 904.17, y: 153.76 },
+    { t: 1781647200000, v: 10865.13, f: '17/06/2026', vf: '10.865,13', x: 911.75, y: 159.67 },
+    { t: 1781733600000, v: 10823.03, f: '18/06/2026', vf: '10.823,03', x: 919.33, y: 163.01 },
+    { t: 1781820000000, v: 10811.31, f: '19/06/2026', vf: '10.811,31', x: 926.92, y: 163.94 },
+    { t: 1781906400000, v: 10783.38, f: '20/06/2026', vf: '10.783,38', x: 934.50, y: 166.16 },
+    { t: 1781992800000, v: 10807.23, f: '21/06/2026', vf: '10.807,23', x: 942.08, y: 164.27 },
+    { t: 1782079200000, v: 10751.32, f: '22/06/2026', vf: '10.751,32', x: 949.67, y: 168.71 },
+    { t: 1782165600000, v: 9709.81, f: '23/06/2026', vf: '9.709,81', x: 957.25, y: 251.40 },
+    { t: 1782252000000, v: 9670.91, f: '24/06/2026', vf: '9.670,91', x: 964.83, y: 254.48 },
+    { t: 1782338400000, v: 9653.73, f: '25/06/2026', vf: '9.653,73', x: 972.42, y: 255.85 },
+    { t: 1782424800000, v: 9601.44, f: '26/06/2026', vf: '9.601,44', x: 980.00, y: 260.00 }
+  ];</script>
+  <script src="src/js/navigation.js"></script>
+  <script src="src/js/charts-evo.js"></script>
+  <script src="src/js/charts-btc.js"></script>
+  <script src="src/js/charts-msci.js"></script>
+  <script src="src/js/prices.js"></script>
+</body>
+</html>
