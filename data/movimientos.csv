@@ -16,6 +16,7 @@ Marca temporal,fecha,tipo,importe,cuenta_origen,cuenta_destino,tipo_ingreso,tipo
 26/06/2026 20:02:30,26/06/2026,Gasto,2.10,Santander,-,,Alimentación > Chino Alimentación,,,Lata de Monster
 26/06/2026 20:40:32,26/06/2026,Gasto,0.19,Santander,-,,Gasto de ajuste,,,-
 26/06/2026 20:41:49,26/06/2026,Gasto,50,Efectivo,-,,Fumar,,,10G Dry
+26/06/2026 23:00:46,26/06/2026,Gasto,25.24,Bankinter,-,,"Ocio > Bares, restaurantes y eventos",,,Glovo MacDonalds
 22/06/2026 20:35:41,26/02/2026,Ingreso,12311.71,-,Bankinter,Ingreso de ajuste,,,,Saldo en cuenta inicial
 22/06/2026 20:36:48,26/02/2026,Ingreso,21.95,-,Santander,Ingreso de ajuste,,,,Saldo en cuenta inicial
 22/06/2026 20:37:35,26/02/2026,Ingreso,85.7,-,Efectivo,Ingreso de ajuste,,,,Saldo en cuenta inicial
