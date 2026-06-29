@@ -21,6 +21,8 @@ Marca temporal,fecha,tipo,importe,cuenta_origen,cuenta_destino,tipo_ingreso,tipo
 28/06/2026 16:00:32,28/06/2026,Gasto,10,Bankinter,-,,Transporte > Combustible,,,Bizum a Laura Colorado Pedrero por la gasolina del Encuentro Anual ABIES
 29/06/2026 14:26:10,28/06/2026,Ingreso,155,-,Bankinter,Donaciones,,,,Pago Bizum De Isabel Casado
 29/06/2026 14:27:21,29/06/2026,Ingreso,454.97,-,Bankinter,Rentas de alquiler,,,,Pago Final Alquiler Poza - Bizum De Alatz Porrua
+29/06/2026 14:32:11,29/06/2026,Gasto,14.15,Santander,-,,Fumar,,,"Estanco 900 - Paquete Camel, papel y filtros"
+29/06/2026 14:34:48,29/06/2026,Gasto,47.16,Santander,-,,Transporte > Combustible,,,Llenado de depósito Kia en Plenergy Vallecas
 22/06/2026 20:35:41,26/02/2026,Ingreso,12311.71,-,Bankinter,Ingreso de ajuste,,,,Saldo en cuenta inicial
 22/06/2026 20:36:48,26/02/2026,Ingreso,21.95,-,Santander,Ingreso de ajuste,,,,Saldo en cuenta inicial
 22/06/2026 20:37:35,26/02/2026,Ingreso,85.7,-,Efectivo,Ingreso de ajuste,,,,Saldo en cuenta inicial
