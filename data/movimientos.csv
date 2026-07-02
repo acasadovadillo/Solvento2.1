@@ -33,6 +33,11 @@ Marca temporal,fecha,tipo,importe,cuenta_origen,cuenta_destino,tipo_ingreso,tipo
 30/06/2026 21:58:34,30/06/2026,Gasto,4.10,Santander,-,,Alimentación > Chino Alimentación,,,2 Litros de Mahou y 1 bolsa
 30/06/2026 22:34:31,30/06/2026,Gasto,42.54,Bankinter,-,,"Ocio > Bares, restaurantes y eventos",,,Glovo de Goiko con Laura Colorado Pedrero
 30/06/2026 22:36:28,30/06/2026,Préstamo,21.27,-,Bankinter,,,Devolución,Laura Colorado Pedrero,Glovo de Goiko con Laura Colorado Pedrero
+2/07/2026 11:55:14,1/07/2026,Gasto,243.80,Bankinter,-,,Inmuebles > Comunidad,,,Comunidad Poza de la Sal
+2/07/2026 11:55:56,1/07/2026,Traspaso,200,Bankinter,Santander,,,,,-
+2/07/2026 11:57:35,30/06/2026,Gasto,88.24,Bankinter,-,,Transporte > Transporte público y privado,,,Reserva de alquiler furgoneta para mudanza
+2/07/2026 11:59:21,1/07/2026,Gasto,250,Bankinter,-,,Transporte > Transporte público y privado,,,Fianza del alquiler de la furgoneta
+2/07/2026 12:01:28,2/07/2026,Ingreso,178.85,-,Bankinter,"Otros ingresos (especificar en ""Detalle"")",,,,Devolución de la fianza de Telefurgo (me devuelven menos porque me pasé de km)
 22/06/2026 20:35:41,26/02/2026,Ingreso,12311.71,-,Bankinter,Ingreso de ajuste,,,,Saldo en cuenta inicial
 22/06/2026 20:36:48,26/02/2026,Ingreso,21.95,-,Santander,Ingreso de ajuste,,,,Saldo en cuenta inicial
 22/06/2026 20:37:35,26/02/2026,Ingreso,85.7,-,Efectivo,Ingreso de ajuste,,,,Saldo en cuenta inicial
